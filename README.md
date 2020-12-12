@@ -99,7 +99,7 @@ The solution is to make the type information (e.g. what type of object we are se
 This is a common problem, so it is somewhat surprising that Gson does not already offer an option to do that.
 The Gson project on GitHub contains an additional library, [gson-extras][2], which provides that functionality in form of `TypeAdapter`s. However this library is [not officially released and maintained][5].
 
-We now have two options. We can locally install the gson-extras library by cloning the official GitHub repo and running `mvn install`. However, we saw failing tests and a `pom.xml` incompatibility with our version of Maven. The recommended alternative is to just copy what we need to our project. In our case, this is just `RuntimeTypeAdapterFactory.java`.
+We now have three options. We can locally install the gson-extras library by cloning the official GitHub repo and running `mvn install`. However, we saw failing tests and a `pom.xml` incompatibility with our version of Maven. Second alternative is to just copy what we need to our project. In our case, this is just `RuntimeTypeAdapterFactory.java`. Finally, third, most straightforward and lazy solution is using unofficial artifact of gson-extras https://search.maven.org/artifact/org.danilopianini/gson-extras/, which is maintained by [Danilo Pianini][7] (https://stackoverflow.com/a/58452469/5357170).
 
 Next, we have to create a `RuntimeTypeAdapterFactory` of the base type `Vehicle` and register all subclasses of `Vehicle`, each with a descriptive label. We then create the `Gson` instance as we did previously, but this time we also let Gson know about our object hierarchy.
 
@@ -149,3 +149,4 @@ A working example of the code used in this post is available on [GitHub][3].
 [4]: https://en.wikipedia.org/wiki/Plain_old_Java_object
 [5]: https://github.com/google/gson/issues/845
 [6]: https://github.com/FasterXML/jackson
+[7]: https://stackoverflow.com/users/1916413/danilo-pianini
